@@ -1,0 +1,84 @@
+<!doctype html>
+<html style="height: 100%; width: 100%; margin: 0; padding: 0;">
+<head>
+	<meta charset="utf-8">
+	
+	<meta name="description" content="Zhang Chuantao official website">
+	<meta name="Keywords" content="张传韬，Zhang Chuantao,Zhang C.T.,Chuantao,zct,zct design">
+	<meta name="author" content="Zhang Chuantao">
+	
+	<title>zct.design - UNDER CONSTRUCTION</title>
+	
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	
+	<!-- 2019.8.11 -->
+</head>
+
+<body style="background-color:#858585; display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, '黑体', 'Microsoft Yahei', '微软雅黑', 'sans-serif';">
+	<div style="position: absolute; left: 50px; top: 50px;">
+		<a href="https://www.zct.design/" style="text-decoration: none;color: white"><h1 style="margin: 0; font-size: 2em">张传韬</h1><p style="margin: 0 0 10px 0;">Zhang Chuantao</p></a>
+		<a href="mailto:zhangct42@outlook.com" style="color: white;">zhangct42@outlook.com</a>
+	</div>
+	<div style=" text-align: center; position: relative">
+		<h2 style="color: white; font-size: 4em; margin: 0;">网站建设中</h2>
+		<p style="color: white; font-size: 1.5em; margin: 0">Website under construction</p>
+		<canvas id="canvas_small" width=1305 height=408 style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 100;"></canvas>
+	</div>
+	<div style="position: absolute; bottom: 10px;">
+		<span style="margin: 0; color: white; font-size: 0.5em;">Copyright © 张传韬 Zhang Chuantao 2017-2019  All Rights Reserved.</span>
+		<a href="http://beian.miit.gov.cn/" style="margin: 0; color: white; font-size: 0.5em; text-decoration: none">鲁ICP备19026279号-1</a>
+	</div>
+	<script>
+		const S = 64;
+		const M = 20;
+		const T = 100;
+
+		var c = document.getElementById("canvas_small");
+		var ctx = c.getContext("2d");
+		var x_a = new Array(M);
+		var y_a = new Array(M);
+		var cd = 0;
+		var ce = 0;
+		var l = true;
+
+		setInterval(doe, T);
+
+		function doe(){
+			if (l){
+				for(i = 1; i < M; i++){
+					draw();
+				}
+				l = false;
+			}
+			else{
+				draw();
+				erase();
+			}
+		}
+		
+		function draw(){
+			x_a[cd] = Math.random() * 1305 - S / 2;
+			y_a[cd] = Math.random() * 408 - S / 2;
+			ctx.fillStyle = "#858585";
+			ctx.fillRect(x_a[cd], y_a[cd], S, S);
+			if(cd < M){
+				cd++;
+			}
+			else{
+				cd = 0;
+			}
+		}
+
+		function erase(){
+			ctx.clearRect(x_a[ce] - 1, y_a[ce] - 1, S + 2, S + 2);
+			if(ce < M){
+				ce++;
+			}
+			else{
+				ce = 0;
+			}
+		}
+	</script>
+</body>
+</html>
