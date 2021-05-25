@@ -1,8 +1,7 @@
 .zct-header
 {
-	padding: 0.5em 0.5em 0 0.5em;
-	margin: 0 auto 0 1em;
 	border-bottom: 1px solid grey;
+	margin-bottom: 2em;
 }
 
 .zct-menu-button
@@ -13,4 +12,30 @@
 .zct-menu-img
 {
 	height: 100%;
+}
+
+.zct-name
+{
+	max-width: 568px;
+	margin: auto;
+	color: gray;
+}
+
+.zct-name-ch 
+{
+	text-align: center;
+	font-size: 1.2em;
+	margin: 1em auto 0 auto;
+}
+
+.zct-name-en 
+{
+	text-align: center;
+}
+
+.zct-intro
+{
+	max-width: 768px;
+	margin: auto;
+	color: gray;
 }
