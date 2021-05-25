@@ -5,7 +5,12 @@
 	border-bottom: 1px solid grey;
 }
 
-.zct-menuicon
+.zct-menu-button
 {
 	height: 18px;
+}
+
+.zct-menu-img
+{
+	width: 18px;
 }
