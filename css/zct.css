@@ -1,16 +1,16 @@
 .zct-header
 {
-	padding: 0.5em;
+	padding: 0.5em 0.5em 0 0.5em;
 	margin: 0 auto 0 1em;
 	border-bottom: 1px solid grey;
 }
 
 .zct-menu-button
 {
-	height: 18px;
+	height: 1.5em;
 }
 
 .zct-menu-img
 {
-	width: 18px;
+	height: 100%;
 }
