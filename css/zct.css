@@ -37,5 +37,6 @@
 {
 	max-width: 768px;
 	margin: auto;
+	border: 0 1em;
 	color: gray;
 }
