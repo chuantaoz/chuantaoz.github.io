@@ -1,6 +1,6 @@
 .zct-header
 {
-	border-bottom: 1px solid grey;
+	/*border-bottom: 1px solid grey;*/
 	margin-bottom: 2em;
 }
 
@@ -39,4 +39,11 @@
 	margin: auto;
 	border: 0 1em;
 	color: gray;
+}
+
+.zct-index-pic
+{
+	max-width: 769px;
+	margin: auto;
+	text-align: center;
 }
