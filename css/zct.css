@@ -126,3 +126,24 @@
 {
 	color: gray;
 }
+
+.zct-404
+{
+	font-size: 5em;
+	color: gray;
+	font-weight: lighter;
+	text-align: center;
+	margin: 1em auto 1em auto;
+}
+
+.zct-404-spacing
+{
+	letter-spacing: 0.25em;
+}
+
+.zct-404-link
+{
+	padding: 0 1em;
+	font-size: 1.2em;
+	color: gray;
+}
