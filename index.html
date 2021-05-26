@@ -1,84 +1,87 @@
 <!doctype html>
-<html style="height: 100%; width: 100%; margin: 0; padding: 0;">
-<head>
-	<meta charset="utf-8">
-	
-	<meta name="description" content="Zhang Chuantao official website">
-	<meta name="Keywords" content="张传韬，Zhang Chuantao,Zhang C.T.,Chuantao,zct,zct design">
-	<meta name="author" content="Zhang Chuantao">
-	
-	<title>zct.design - UNDER CONSTRUCTION</title>
-	
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	
-	<!-- 2019.8.11 -->
-</head>
+<html>
 
-<body style="background-color:#858585; display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, '黑体', 'Microsoft Yahei', '微软雅黑', 'sans-serif';">
-	<div style="position: absolute; left: 50px; top: 50px;">
-		<a href="https://www.zct.design/" style="text-decoration: none;color: white"><h1 style="margin: 0; font-size: 2em">张传韬</h1><p style="margin: 0 0 10px 0;">Zhang Chuantao</p></a>
-		<a href="mailto:zhangct42@outlook.com" style="color: white;">zhangct42@outlook.com</a>
-	</div>
-	<div style=" text-align: center; position: relative">
-		<h2 style="color: white; font-size: 4em; margin: 0;">网站建设中</h2>
-		<p style="color: white; font-size: 1.5em; margin: 0">Website under construction</p>
-		<canvas id="canvas_small" width="1305" height="408" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 100;"></canvas>
-	</div>
-	<div style="position: absolute; bottom: 10px;">
-		<span style="margin: 0; color: white; font-size: 0.5em;">Copyright © 张传韬 Zhang Chuantao 2017-2019  All Rights Reserved.</span>
-		<a href="http://beian.miit.gov.cn/" style="margin: 0; color: white; font-size: 0.5em; text-decoration: none">鲁ICP备19026279号-1</a>
-	</div>
-	<script>
-		const S = 64;
-		const M = 20;
-		const T = 100;
-
-		var c = document.getElementById("canvas_small");
-		var ctx = c.getContext("2d");
-		var x_a = new Array(M);
-		var y_a = new Array(M);
-		var cd = 0;
-		var ce = 0;
-		var l = true;
-
-		setInterval(doe, T);
-
-		function doe(){
-			if (l){
-				for(i = 1; i < M; i++){
-					draw();
-				}
-				l = false;
-			}
-			else{
-				draw();
-				erase();
-			}
-		}
+	<head>
+		<meta charset="utf-8">
 		
-		function draw(){
-			x_a[cd] = Math.random() * 1305 - S / 2;
-			y_a[cd] = Math.random() * 408 - S / 2;
-			ctx.fillStyle = "#858585";
-			ctx.fillRect(x_a[cd], y_a[cd], S, S);
-			if(cd < M){
-				cd++;
-			}
-			else{
-				cd = 0;
-			}
-		}
+		<meta name="description" content="Zhang Chuantao's Website.">
+		<meta name="Keywords" content="张传韬, Zhang Chuantao, Chuantao Zhang">
+		<meta name="author" content="Zhang Chuantao">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>ZCT.DESIGN_Zhang Chuantao</title>
+		
+		<link rel="stylesheet" type="text/css" href="css/pure-min.css">
+		<link rel="stylesheet" type="text/css" href="css/grids-responsive-min.css">
+		<link rel="stylesheet" type="text/css" href="css/zct.css">
+		
+		<link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
+		
+		<!-- 2021.05.25 -->
+	</head>
 
-		function erase(){
-			ctx.clearRect(x_a[ce] - 1, y_a[ce] - 1, S + 2, S + 2);
-			if(ce < M){
-				ce++;
-			}
-			else{
-				ce = 0;
-			}
-		}
-	</script>
+<body>
+	<div class="zct-header">
+		<div class="pure-menu pure-menu-horizontal">
+			<ul class="pure-menu-list">
+				<li class="pure-menu-item pure-menu-allow-hover">
+					<a href="#" id="menu" class="pure-menu-link  zct-menu-button">
+						<img class="zct-menu-img" src="icons/menu_black_48dp.svg" alt="Menu">
+					</a>
+					<ul class="pure-menu-children">
+						<li class="pure-menu-item">
+							<a href="/portfolio" class="pure-menu-link">Portfolio</a>
+						</li>
+						<li class="pure-menu-item">
+							<a href="#" class="pure-menu-link pure-menu-disabled">Blog</a>
+						</li>
+					</ul>
+				</li>
+				<span class="pure-menu-heading">zct.design</span>
+			</ul>
+		</div>
+	</div>
+	<div class="zct-intro">
+		<p class="zct-intro-text">I am <b>Zhang Chuantao</b>, a industrial designer from China. I devote my life to the study and practice of participatory design.</p>
+ 	</div>
+	<div class="pure-g zct-front-content">
+		<div class="pure-u-1 pure-u-sm-2-3 zct-front-content-2">
+			<img class="zct-front-content-image" src="imgs/Fportfolio.jpg" alt="Portfolio">
+			<div class="zct-front-content-text">
+			<span class="zct-front-content-text-spacing">Portfoli</span>o
+			</div>
+		</div>
+		<div class="pure-u-1 pure-u-sm-1-3 zct-front-content-2">
+			<img class="zct-front-content-image" src="imgs/Fblog.jpg" alt="Blog">
+			<div class="zct-front-content-text">
+			<span class="zct-front-content-text-spacing">Blo</span>g
+			</div>
+		</div>
+	</div>
+	<div class="pure-g zct-links">
+		<div class="pure-u-1 pure-u-sm-1-3 zct-links-2">
+			<span class="zct-link-header">Contact:</span>
+        </div>
+		<div class="pure-u-1 pure-u-sm-1-3 zct-links-2">
+			<a class="zct-link-a" href="mailto:zct@zct.design">
+				<img class="zct-link-img" src="icons/email_black_48dp.svg" alt="Email">
+				<u>zct@zct.design</u>
+			</a>
+		</div>
+		<div class="pure-u-1 pure-u-sm-1-3 zct-links-2">
+			<a class="zct-link-a" href="mailto:zct@zct.design">
+				<img class="zct-link-img" src="icons/live_tv_black_48dp.svg" alt="Bilibili">
+				<u>bilibili</u>
+			</a>
+		</div>
+	</div>
+	<div class="zct-footer">
+		<div class="zct-cr">
+			Copyright © Zhang Chuantao 2017-2021 All Rights Reserved.
+			<a class="zct-miit" href="http://beian.miit.gov.cn/">鲁ICP备19026279号-1</a>
+		</div>
+	</div>
 </body>
 </html>
