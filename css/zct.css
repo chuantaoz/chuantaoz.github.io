@@ -14,37 +14,115 @@
 	height: 100%;
 }
 
-.zct-name
-{
-	max-width: 568px;
-	margin: auto;
-	padding: 0 1em;
-	color: gray;
-}
-
-.zct-name-ch 
-{
-	text-align: center;
-	font-size: 1.2em;
-	margin: 1em auto 0 auto;
-}
-
-.zct-name-en 
-{
-	text-align: center;
-}
-
 .zct-intro
 {
-	max-width: 768px;
-	margin: auto;
+	max-width: 48em;
+	margin: 2em auto;
 	padding: 0 1em;
-	color: gray;
+	color: black;
+	font-weight: lighter;
 }
 
-.zct-index-pic
+.zct-intro-text
 {
-	max-width: 769px;
-	margin: 2em auto 2em auto;
+	font-size: 1.2em;
+	padding: 0 1em;
+}
+
+.zct-links
+{
+	margin: 2em auto;
+	max-width: 35.5em;
+}
+
+.zct-links-2
+{
+	margin: auto;
 	text-align: center;
+}
+
+.zct-link-a
+{
+	margin: auto;
+	color: black;
+	font-size: 1.2em;
+	font-weight: lighter;
+	text-decoration: none;
+	padding: 0.5em;
+	/*border: 1px solid black;
+	border-radius: 1em;*/
+	display: inline-block;
+}
+
+.zct-link-img
+{
+	height: 1.2em;
+	vertical-align: middle;
+}
+
+.zct-link-header
+{
+	font-size: 1.2em;
+	font-weight: lighter;
+	margin-bottom: 1em;
+}
+
+.zct-front-content
+{
+	max-width: 48em;
+	margin: 2em auto;
+	padding: 0 1em;
+}
+
+.zct-front-content-2
+{
+	padding: 1em;
+	box-sizing: border-box;
+	position: relative;
+	height: 16em;
+}
+
+.zct-front-content-image
+{
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.zct-front-content-text
+{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	font-size: 2em;
+	margin-top: -0.5em;
+	color: white;
+	text-shadow: 2px 2px 2px grey;
+	text-transform: uppercase;
+}
+
+.zct-front-content-text-spacing
+{
+	letter-spacing: 0.5em;
+}
+
+.zct-footer
+{
+	width: 100%;
+	text-align: center;
+	margin:  4em auto  1em auto;
+}
+
+.zct-cr
+{
+	color: gray;
+	font-size: 0.75em;
+	font-weight: lighter;
+}
+
+.zct-miit
+{
+	color: gray;
 }
