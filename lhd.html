@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="description" content="Zhang Chuantao's Website.">
+		<meta name="Keywords" content="张传韬, Zhang Chuantao, Chuantao Zhang">
+		<meta name="author" content="Zhang Chuantao">
+		
+		
+		<title>LHD</title>
+		
+		<link rel="stylesheet" type="text/css" href="css/pure-min.css">
+		
+		<link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
+		
+		<style>
+			html{
+				height: 100%;
+			}
+			body{
+				font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+				text-align: center;
+				font-size: 1.5em;
+				background-color: #F5B0BD;
+				color: white;
+			}
+			.lhd1{
+				
+			}
+			.s{
+				display: inline-block;
+				vertical-align: super;
+			}
+			.num{
+				font-size: 2em;
+				color: white;
+			}
+		</style>
+	</head>
+	
+
+<body>
+	<div class="lhd1">
+		<p>距离<b>2022年全国硕士研究生招生考试</b>还有</p>
+	</div>
+	<div class="lhd2">
+		<span id="d" class="num">00</span>
+		<span class="s">天</span>
+		<span id="h" class="num">00</span>
+		<span class="s">时</span>
+		<span id="m" class="num">00</span>
+		<span class="s">分</span>
+		<span id="s" class="num">00</span>
+		<span class="s">秒</span>
+		<span id="ms" class="num">000</span>
+		<span class="s">毫秒</span>
+    </div>
+	
+	
+	<script>
+		var d = document.getElementById("d");
+		var h = document.getElementById("h");
+		var m = document.getElementById("m");
+		var s = document.getElementById("s");
+		var ms = document.getElementById("ms");
+		
+		var mspd = 86400000;
+		var msph = 3600000;
+		var mspm = 60000;
+		var msps = 1000;
+		
+		var end = 1640392200000;
+		
+		var date1 = new Date();
+		var time1 = date1.getTime();
+		var date2 = new Date();
+		var time2 = date2.getTime();
+		
+		if (time2 >= end)
+		{
+			
+		}
+		else
+		{
+			setTimeout("a()",50);
+		}
+		
+		function a()
+		{
+			if (time2 > time1)
+			{
+				var cd = end - time2;
+				var day = Math.floor(cd / mspd);
+				cd = cd % mspd;
+				var hour = Math.floor(cd / msph);
+				cd = cd % msph;
+				var min = Math.floor(cd / mspm);
+				cd = cd % mspm;
+				var sec = Math.floor(cd / msps);
+				var msec = cd % msps;
+				
+				day = num3(day);
+				hour = num2(hour);
+				min = num2(min);
+				sec = num2(sec);
+				msec = num3(msec);
+				
+				d.innerHTML = day;
+				h.innerHTML = hour;
+				m.innerHTML = min;
+				s.innerHTML = sec;
+				ms.innerHTML = msec;
+				
+				time1 = time2;
+				date2 = new Date();
+				time2 = date2.getTime();
+				
+				setTimeout("a()",50);
+			}
+			else
+			{
+				date2 = new Date();
+				time2 = date2.getTime();
+				
+				setTimeout("a()",50);
+			}
+		}
+		
+		function num3(num)
+		{
+			if (num.toString().length == 1)
+			{
+				return "00" + num;
+			}
+			else if (num.toString().length == 2)
+			{
+				return "0" + num;
+			}
+			else
+			{
+				return num;
+			}
+		}
+		
+		function num2(num)
+		{
+			if (num.toString().length == 1)
+			{
+				return "0" + num;
+			}
+			else
+			{
+				return num;
+			}
+		}
+		
+	</script>
+</body>
+</html>
