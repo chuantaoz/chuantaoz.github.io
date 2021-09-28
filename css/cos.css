@@ -1,0 +1,86 @@
+.header
+{
+	/*border-bottom: 1px solid grey;
+	margin-bottom: 2em;*/
+}
+
+.menu-button
+{
+	height: 1.5em;
+}
+
+.menu-img
+{
+	height: 100%;
+}
+
+.front_div
+{
+	/*width: 90%;*/
+	margin: 0 auto 4em auto;
+}
+
+.impacthub_div
+{
+	width: 90%;
+	margin: 0 auto 2em auto;
+	padding: 0 0.5em;
+	box-sizing: border-box;
+}
+.ih_title
+{
+	font-size: 1.2em;
+}
+
+.ih_title_div
+{
+	width: 90%;
+	margin: 0 auto;
+	padding: 0 0.5em;
+	box-sizing: border-box;
+}
+
+.ih_div
+{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.ih_div_sub
+{
+	padding: 0 0.5em;
+	box-sizing: border-box;
+	position: relative;
+	margin-bottom: 1em;
+}
+
+.front_title
+{
+	font-size: 1.5em;
+}
+
+.ih_header
+{
+	position: absolute;
+	left: 1.5em;
+	top: 60%;
+	font-weight: bold;
+	color: white;
+}
+
+.ih_des
+{
+	position: absolute;
+	left: 1.5em;
+	top: 70%;
+	width: 80%;
+	color: white;
+}
+
+.footer
+{
+	font-size: 0.8em;
+	color: grey;
+	margin: 4em auto 0 auto;
+	text-align: center;
+}
