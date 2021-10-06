@@ -69,7 +69,7 @@ body
 {
 	margin: 2em auto;
 	width: 80%;
-	padding: 2em 4em;
+	padding: 2em 6em;
 	box-sizing: border-box;
 	background-color: white;
 }
@@ -161,10 +161,46 @@ body
 	font-size: 0.8em;
 }
 
-
 .title
 {
 	text-align: center;
 	font-size: 2em;
 	color: darkcyan;
+}
+
+.articleImgDiv
+{
+	width: 80%;
+	margin: 2em auto 0 auto;
+}
+
+.articleDiv
+{
+	margin: 0 auto 2em auto;
+	width: 80%;
+	padding: 2em 6em;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+.articleTitle
+{
+	text-align: center;
+	font-size: 2em;
+}
+
+.articleTitle2
+{
+	font-size: 1.2em;
+}
+
+.articleTwoImg
+{
+	margin: 1em auto;
+}
+
+.articleSingleImg
+{
+	margin: 1em auto;
+	width: 60%;
 }
