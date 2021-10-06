@@ -65,6 +65,15 @@ body
 	background-color: white;
 }
 
+.cataContent
+{
+	margin: 2em auto;
+	width: 80%;
+	padding: 2em 4em;
+	box-sizing: border-box;
+	background-color: white;
+}
+
 .homeContentHeader
 {
 	font-weight: bold;
