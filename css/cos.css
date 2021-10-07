@@ -277,8 +277,31 @@ body
 {
 	font-weight: lighter;
 	display: -webkit-box;
-	-webkit-line-clamp: 9;
+	-webkit-line-clamp: 8;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.newsImg
+{
+	box-sizing: border-box;
+	padding: 0 1em 0 0;
+}
+
+.newsCon
+{
+	box-sizing: border-box;
+	padding: 0 0 0 1em;
+}
+
+.newsA
+{
+	text-decoration: none;
+	color: black;
+}
+
+.news
+{
+	margin: 2em 0;
 }
