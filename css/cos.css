@@ -217,3 +217,68 @@ body
 	text-decoration: none;
 	color: black;
 }
+
+.publicationDiv
+{
+	margin: 2em auto 2em auto;
+	width: 80%;
+	padding: 2em 6em;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+.publicationFront
+{
+	box-sizing: border-box;
+	padding: 0 1em;
+}
+
+.publicationDes
+{
+	box-sizing: border-box;
+	padding: 0 1em;
+}
+
+.bookTitle
+{
+	font-size: 1.5em;
+	
+}
+
+.bookKey
+{
+	font-weight: bold;
+}
+
+.opinions
+{
+	margin: 2em 0;
+}
+
+.opinions2
+{
+	box-sizing: border-box;
+	padding: 0 1em;
+}
+
+.opinionA
+{
+	text-decoration: none;
+	color: black;
+}
+
+.opinionAb
+{
+	text-decoration: none;
+	color: black;
+}
+
+.newsDes
+{
+	font-weight: lighter;
+	display: -webkit-box;
+	-webkit-line-clamp: 9;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
