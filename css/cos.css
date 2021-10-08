@@ -291,6 +291,16 @@ body
 	text-overflow: ellipsis;
 }
 
+.bookDes
+{
+	font-weight: lighter;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .newsImg
 {
 	box-sizing: border-box;
@@ -322,7 +332,7 @@ body
 {
 	font-weight: lighter;
 	display: -webkit-box;
-	-webkit-line-clamp: 8;
+	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
