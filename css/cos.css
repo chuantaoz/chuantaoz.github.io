@@ -251,7 +251,6 @@ body
 .bookTitle
 {
 	font-size: 1.5em;
-	
 }
 
 .bookKey
@@ -313,4 +312,18 @@ body
 .news
 {
 	margin: 2em 0;
+}
+
+.opinionTitle
+{
+	font-weight: bold;
+}
+.opinionDes
+{
+	font-weight: lighter;
+	display: -webkit-box;
+	-webkit-line-clamp: 8;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
