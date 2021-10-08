@@ -328,6 +328,7 @@ body
 {
 	font-weight: bold;
 }
+
 .opinionDes
 {
 	font-weight: lighter;
@@ -336,4 +337,15 @@ body
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.pure-img
+{
+	width: 100%;
+}
+
+.memberImg
+{
+	margin: 2em auto 1em auto;
+	width: 40%;
 }
