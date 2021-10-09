@@ -1,7 +1,13 @@
 body
 {
+	margin: 0;
 	background-color: white;
 	font-family: Helvetica, Arial, sans-serif;
+}
+
+p
+{
+	color: rgba(33,33,33,1.00);
 }
 
 .header
@@ -89,6 +95,11 @@ body
 	padding: 2em 6em;
 	box-sizing: border-box;
 	background-color: white;
+}
+
+.cataContent2
+{
+	margin: 4em auto;
 }
 
 .homeContentHeader
@@ -244,11 +255,16 @@ body
 	font-size: 0.8em;
 }
 
+.footerP
+{
+	margin-bottom: 0;
+}
+
 .title
 {
-	text-align: center;
-	font-size: 2em;
-	color: darkcyan;
+	font-size: 2.8em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
 }
 
 .articleImgDiv
@@ -303,8 +319,13 @@ body
 .publication
 {
 	box-sizing: border-box;
-	padding: 0 0.5em;
+	padding: 0 2em;
 	margin: 0 0;
+}
+
+.publicationTitle
+{
+	font-size: 0.8em;
 }
 
 .publicationA
@@ -317,7 +338,7 @@ body
 {
 	margin: 2em auto 2em auto;
 	width: 80%;
-	padding: 2em 6em;
+	padding: 2em 0;
 	box-sizing: border-box;
 	background-color: white;
 }
@@ -337,11 +358,15 @@ body
 .bookTitle
 {
 	font-size: 1.5em;
+	font-weight: bold;
+	margin: 4em 0 1em 0;
 }
 
 .bookKey
 {
-	font-weight: bold;
+	font-size: 0.8em;
+	font-style: italic;
+	margin: 0.5em 0;
 }
 
 .opinions
@@ -371,10 +396,12 @@ body
 {
 	font-weight: lighter;
 	display: -webkit-box;
-	-webkit-line-clamp: 8;
+	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	line-height: 1.5em;
+	font-size: 0.8em;
 }
 
 .bookDes
@@ -385,6 +412,10 @@ body
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	font-size: 0.9em;
+	line-height: 1.5em;
+	color:rgba(26,26,26,1.00);
+	margin-bottom: 2em;
 }
 
 .newsImg
@@ -407,7 +438,7 @@ body
 
 .news
 {
-	margin: 2em 0;
+	margin: 4em 0;
 }
 
 .opinionTitle
@@ -423,6 +454,22 @@ body
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	color: gray;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+
+.opinionDesTop
+{
+	font-weight: lighter;
+	display: -webkit-box;
+	-webkit-line-clamp: 8;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: gray;
+	line-height: 1.5em;
+	font-size: 0.8em;
 }
 
 .pure-img
@@ -434,4 +481,83 @@ body
 {
 	margin: 2em auto 1em auto;
 	width: 40%;
+}
+
+.cataImage
+{
+	position: relative;
+	z-index: -1;
+}
+
+.cataTitle
+{
+	position: absolute;
+	bottom: 4em;
+
+}
+
+.cataTitle2
+{
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	line-height: 1.5em;
+}
+
+.cataArticleDes
+{
+	font-weight: lighter;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.7em;
+	font-size: 0.8em;
+	color: darkgray;
+}
+
+.cataArticleTitle
+{
+	margin: 1em auto 0 auto;
+	font-weight: bold;
+}
+
+.cataLink
+{
+	margin: 4em auto 4em auto;
+	width: 80%;
+}
+
+.titleDes
+{
+	font-style: italic;
+	font-weight: lighter;
+	line-height: 1.5em;
+	color: gray;
+	font-size: 0.9em;
+}
+
+.em
+{
+	margin: 4em auto 2em auto;
+	width: 50%;
+}
+
+.h
+{
+	color: gray;
+}
+
+.opinionTop
+{
+	margin-bottom: 4em;
+}
+
+.newsTitle
+{
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 2em;
 }
