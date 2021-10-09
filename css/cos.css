@@ -1,7 +1,7 @@
 body
 {
-	background-color: lightgray;
-	font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
+	background-color: white;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 .header
@@ -13,7 +13,7 @@ body
 	height: 2em;
 	line-height: 2em;
 	text-align: center;
-	background-color: white;
+	background-color:rgba(250,250,250,1.00);
 }
 
 .header2
@@ -25,19 +25,19 @@ body
 	height: 2em;
 	line-height: 2em;
 	text-align: center;
-	background-color: lightgray;
+	background-color:rgba(250,250,250,1.00);
 }
 
 .headerA
 {
 	margin: 0.5em 0 0 0;
 	text-decoration: none;
-	color: black;
+	color: lightgray;
 }
 
 .headerASelected
 {
-	color: gray;
+	color: black;
 }
 
 .homeButton
@@ -48,7 +48,7 @@ body
 .divFrontImgBack
 {
 	background-color: white;
-	padding: 2em;
+	padding: 2em 0 0 0;
 }
 
 .divFrontImg
@@ -58,11 +58,28 @@ body
 
 .homeContent
 {
-	margin: 2em auto;
-	width: 80%;
-	padding: 2em;
-	box-sizing: border-box;
+	margin: 0 auto 4em auto;
+	width: 100%;
+	padding: 0;
+	/*box-sizing: border-box;*/
 	background-color: white;
+}
+
+.homeContent2
+{
+	width: 60%;
+	margin: 0 auto 0 auto;
+}
+
+.homeContent2A
+{
+	width: 80%;
+	margin: 0 auto 0 auto;
+}
+
+.homeContent3
+{
+	margin: 5em 0;
 }
 
 .cataContent
@@ -77,6 +94,14 @@ body
 .homeContentHeader
 {
 	font-weight: bold;
+	margin: 4em auto 0 auto;
+	font-size: 2em;
+	text-align: center;
+}
+
+.homeContentDes
+{
+	text-align: center;
 }
 
 .homeArticle
@@ -86,7 +111,8 @@ body
 
 .homeArticleTitle
 {
-	margin: 0 auto 4em auto;
+	margin: 5em auto 2em auto;
+	font-weight: bold;
 }
 
 .homeArticleTop
@@ -103,16 +129,52 @@ body
 {
 	color: black;
 	text-decoration: none;
+	height: inherit;
+}
+
+.homeContent2L
+{
+	box-sizing: border-box;
+	padding-right: 2em;
+}
+
+.homeContent2R
+{
+	box-sizing: border-box;
+	padding-left: 2em;
+}
+
+.homeNewsL
+{
+}
+
+.homeNewsR
+{
+	box-sizing: border-box;
+	padding: 0 2em;
+}
+
+.homeNewsDark
+{
+	background-color:rgba(250,250,250,1.00)
 }
 
 .homeArticleDes
 {
 	font-weight: lighter;
 	display: -webkit-box;
-	-webkit-line-clamp: 5;
+	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	line-height: 1.7em;
+	font-size: 0.8em;
+	color: darkgray;
+}
+
+.homeNewsTitle
+{
+	font-weight: bold;
 }
 
 .homeNewsLeft
@@ -127,19 +189,30 @@ body
 	padding: 0 0 0 1em;
 }
 
-.homeNewsTitle
+.homeNewsDes
 {
+	font-weight: lighter;
 	display: -webkit-box;
-	-webkit-line-clamp: 1;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	line-height: 1.7em;
+	font-size: 0.8em;
+	color: darkgray;
+}
+
+.footerB
+{
+	background-color: rgba(250,250,250,1.00);
+	margin: 2em 0 0 0;
 }
 
 .footer
 {
 	width: 80%;
 	margin: 2em auto 0 auto;
+	padding: 2em 0 0 0;
 }
 .footer2
 {
@@ -151,6 +224,7 @@ body
 {
 	text-align: center;
 	font-size: 0.8em;
+	margin-bottom: 0;
 }
 
 .footerA
@@ -196,6 +270,7 @@ body
 {
 	text-align: center;
 	font-size: 2em;
+	font-weight: bold;
 }
 
 .articleTitle2
@@ -203,15 +278,26 @@ body
 	font-size: 1.2em;
 }
 
+.articleText
+{
+	font-size: 0.8em;
+}
+
 .articleTwoImg
 {
-	margin: 1em auto;
+	margin: 4em auto;
 }
 
 .articleSingleImg
 {
-	margin: 1em auto;
+	margin: 4em auto;
 	width: 60%;
+}
+
+.articleText
+{
+	line-height: 1.6em;
+	color:rgba(50,50,50,1.00);
 }
 
 .publication
