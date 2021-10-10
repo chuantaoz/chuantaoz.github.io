@@ -19,6 +19,7 @@ p
 .header
 {
 	width: 100%;
+	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -591,11 +592,7 @@ p
 	top: 0;
 	z-index: 5;
 	text-align: center;
-	width: 100%;
-}
-
-.logoDiv2
-{
+	width: 12.5%;
 	background-color: rgba(250,250,250,1.00);
 	height: 4em;
 }
