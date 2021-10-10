@@ -10,10 +10,16 @@ p
 	color: rgba(33,33,33,1.00);
 }
 
+.headerBlank
+{
+	height: 2em;
+	background-color: rgba(250,250,250,1.00);
+}
+
 .header
 {
 	width: 100%;
-	position: fixed;
+	position: sticky;
 	top: 0;
 	left: 0;
 	height: 2em;
@@ -54,7 +60,7 @@ p
 .divFrontImgBack
 {
 	background-color: white;
-	padding: 2em 0 0 0;
+	padding: 0 0 0 0;
 }
 
 .divFrontImg
@@ -265,6 +271,14 @@ p
 	font-size: 2.8em;
 	font-weight: bold;
 	margin-bottom: 0.5em;
+}
+
+.title2
+{
+	font-size: 2.8em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+	color: white;
 }
 
 .articleImgDiv
@@ -539,6 +553,15 @@ p
 	font-size: 0.9em;
 }
 
+.titleDes2
+{
+	font-style: italic;
+	font-weight: lighter;
+	line-height: 1.5em;
+	color: white;
+	font-size: 0.9em;
+}
+
 .em
 {
 	margin: 4em auto 2em auto;
@@ -560,4 +583,24 @@ p
 	font-size: 1.2em;
 	font-weight: bold;
 	margin-top: 2em;
+}
+
+.logoDiv
+{
+	position: absolute;
+	top: 0;
+	z-index: 5;
+	text-align: center;
+	width: 100%;
+}
+
+.logoDiv2
+{
+	background-color: rgba(250,250,250,1.00);
+	height: 4em;
+}
+
+.logoButton
+{
+	height: 4em;
 }
