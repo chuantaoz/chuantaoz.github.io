@@ -613,12 +613,49 @@ a>p:hover
 
 @keyframes FadeInOut {
             0% {
-                opacity: 0;
-            }
-            100% {
                 opacity: 1;
             }
+            100% {
+                opacity: 0;
+            }
         }
+
+@keyframes fade1
+{
+	0%{opacity: 1;}
+	25%{opacity: 0;}
+	50%{opacity: 0;}
+	75%{opacity: 0;}
+}
+
+@keyframes fade2
+{
+	0%{opacity: 0;}
+	25%{opacity: 1;}
+	50%{opacity: 0;}
+	75%{opacity: 0;}
+}
+
+@keyframes fade3
+{
+	0%{opacity: 0;}
+	25%{opacity: 0;}
+	50%{opacity: 1;}
+	75%{opacity: 0;}
+}
+
+@keyframes fade4
+{
+	0%{opacity: 0;}
+	25%{opacity: 0;}
+	50%{opacity: 0;}
+	75%{opacity: 1;}
+}
+
+.frontImg1
+{
+	opacity: 1;
+}
 
 .frontImg2, .frontImg3, .frontImg4
 {
@@ -630,40 +667,36 @@ a>p:hover
 
 .frontImg1
 {
-	animation-name: FadeInOut;
-	animation-timing-function: ease-in-out;
+	animation-name: fade1;
+	animation-timing-function: linear;
 	animation-iteration-count: infinite;
-	animation-duration: 4s;
-	animation-direction: alternate;
-	animation-delay: 4s;
+	animation-duration: 16s;
+	animation-direction: normal;
 }
 
 .frontImg2
 {
-	animation-name: FadeInOut;
-	animation-timing-function: ease-in-out;
+	animation-name: fade2;
+	animation-timing-function: linear;
 	animation-iteration-count: infinite;
-	animation-duration: 4s;
-	animation-direction: alternate;
-	animation-delay: 8s;
+	animation-duration: 16s;
+	animation-direction: normal;
 }
 
 .frontImg3
 {
-	animation-name: FadeInOut;
-	animation-timing-function: ease-in-out;
+	animation-name: fade3;
+	animation-timing-function: linear;
 	animation-iteration-count: infinite;
-	animation-duration: 4s;
-	animation-direction: alternate;
-	animation-delay: 12s;
+	animation-duration: 16s;
+	animation-direction: normal;
 }
 
 .frontImg4
 {
-	animation-name: FadeInOut;
-	animation-timing-function: ease-in-out;
+	animation-name: fade4;
+	animation-timing-function: linear;
 	animation-iteration-count: infinite;
-	animation-duration: 4s;
-	animation-direction: alternate;
-	animation-delay: 16s;
+	animation-duration: 16s;
+	animation-direction: normal;
 }
