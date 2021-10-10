@@ -13,7 +13,7 @@ p
 .headerBlank
 {
 	height: 2em;
-	background-color: rgba(250,250,250,1.00);
+	background-color: rgba(230,230,230,1.00);
 }
 
 .header
@@ -26,7 +26,8 @@ p
 	height: 2em;
 	line-height: 2em;
 	text-align: center;
-	background-color:rgba(250,250,250,1.00);
+	background-color:rgba(230,230,230,1.00);
+	z-index: 9;
 }
 
 .header2
@@ -38,14 +39,14 @@ p
 	height: 2em;
 	line-height: 2em;
 	text-align: center;
-	background-color:rgba(250,250,250,1.00);
+	background-color:rgba(230,230,230,1.00);
 }
 
 .headerA
 {
 	margin: 0.5em 0 0 0;
 	text-decoration: none;
-	color: lightgray;
+	color: gray;
 }
 
 .headerASelected
@@ -66,7 +67,6 @@ p
 
 .divFrontImg
 {
-	
 }
 
 .homeContent
@@ -174,12 +174,11 @@ p
 
 .homeNewsDark
 {
-	background-color:rgba(250,250,250,1.00)
+	background-color:rgba(230,230,230,1.00)
 }
 
 .homeArticleDes
 {
-	font-weight: lighter;
 	display: -webkit-box;
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
@@ -222,7 +221,7 @@ p
 
 .footerB
 {
-	background-color: rgba(250,250,250,1.00);
+	background-color: rgba(230,230,230,1.00);
 	margin: 2em 0 0 0;
 }
 
@@ -590,10 +589,10 @@ p
 {
 	position: absolute;
 	top: 0;
-	z-index: 5;
+	z-index: 10;
 	text-align: center;
 	width: 12.5%;
-	background-color: rgba(250,250,250,1.00);
+	background-color: rgba(230,230,230,1.00);
 	height: 4em;
 }
 
@@ -606,7 +605,65 @@ a:hover
 { 
 	color:rgba(19,139,205,1.00);
 }
+
 a>p:hover
 {
 	color:rgba(19,139,205,1.00);
+}
+
+@keyframes FadeInOut {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+.frontImg2, .frontImg3, .frontImg4
+{
+	opacity: 0;
+	position: absolute;
+	top: 4em;
+	left: 0;
+}
+
+.frontImg1
+{
+	animation-name: FadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 4s;
+	animation-direction: alternate;
+	animation-delay: 4s;
+}
+
+.frontImg2
+{
+	animation-name: FadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 4s;
+	animation-direction: alternate;
+	animation-delay: 8s;
+}
+
+.frontImg3
+{
+	animation-name: FadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 4s;
+	animation-direction: alternate;
+	animation-delay: 12s;
+}
+
+.frontImg4
+{
+	animation-name: FadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 4s;
+	animation-direction: alternate;
+	animation-delay: 16s;
 }
