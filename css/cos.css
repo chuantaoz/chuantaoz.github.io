@@ -601,3 +601,12 @@ p
 {
 	height: 4em;
 }
+
+a:hover
+{ 
+	color:rgba(19,139,205,1.00);
+}
+a>p:hover
+{
+	color:rgba(19,139,205,1.00);
+}
