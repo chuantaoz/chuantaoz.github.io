@@ -12,6 +12,7 @@
 		* {
     		box-sizing: border-box;
 		}
+		
         html{
             height: 100%;
 			font-family: Helvetica, Arial, "sans-serif";
@@ -42,7 +43,7 @@
 			background-color:#F2F2F2;
 			padding: 1em 0;
 			border-radius: 1em;
-			margin: 0 auto 1em auto;
+			margin: 0 auto 1.5em auto;
 			box-shadow: 0.25em 0.25em 0.5em 0 grey;
 		}
 		
@@ -91,7 +92,7 @@
 			border: none;
 			background-color: white;
 			border-radius: 0.5em;
-			height: 1.5em;
+			height: 2em;
 			box-shadow: 0.1em 0.1em 0.2em 0 grey;
 		}
 		
@@ -99,25 +100,30 @@
 			border: none;
 			background-color: white;
 			border-radius: 0.5em;
-			height: 1.5em;
+			height: 2em;
 			box-shadow: 0.1em 0.1em 0.2em 0 grey inset;
 		}
+		
 		#notice{
 			font-size: 0.75em;
 			color: crimson;
 		}
+		
 		#img_submit{
-			height: 1.5em;
+			height: 2em;
 		}
+		
 		#logo_div{
 			position: fixed;
 			left: 1em;
 			top: 1em;
 			width: 10em;
 		}
+		
 		#logo_img{
 			width: inherit;
 		}
+		
 		#f_div{
 			position: fixed;
 			display: inline;
@@ -202,7 +208,7 @@
 			});
 			var toolbar = new AMap.ToolBar({
 				position: 'RB',
-				offset: [21,80],
+				offset: [21,240],
 			});
 			map.addControl(toolbar);
 			var myIcon = new AMap.Icon({
@@ -217,7 +223,7 @@
         		convert: true,
         		showButton: true,
         		position: 'RB',
-        		offset: [20, 30],
+        		offset: [20, 180],
         		showMarker: true,
 				markerOptions: {
 					icon: myIcon,
