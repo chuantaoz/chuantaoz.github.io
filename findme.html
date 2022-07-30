@@ -187,7 +187,7 @@
 			</div>
 		</div>
 		<div id="logo_div">
-			<img id="logo_img" src="icons/logo.png">
+			<img id="logo_img" src="icons/logo.png" alt="logo">
 		</div>
 		<div id="f_div">
 			<span>Copyright © 2020 Chuantao Zhang</span>
@@ -207,9 +207,14 @@
 		var n_input = new Boolean;
 		var e_input = new Boolean;
 		var marker;
-		var lc = new Boolean;
-		var mk = new Boolean;
-		
+		var geolocation;
+		var location_gcj02;
+		var lclnglat;
+		var lc = false;
+		var mk = false;
+		var polyline;
+		var text;
+
 		AMapLoader.load({
     		"key": "861ebb61c19992a2a65a4938021d0fe5",
     		"version": "2.0",
@@ -223,7 +228,7 @@
 			});
 			var toolbar = new AMap.ToolBar({
 				position: 'RB',
-				offset: [21,265],
+				offset: [20,265],
 			});
 			map.addControl(toolbar);
 			var myIcon = new AMap.Icon({
@@ -231,7 +236,10 @@
 				image: 'icons/my_location.png',
 				imageSize: new AMap.Size(48, 48),
 			});
-			var geolocation = new AMap.Geolocation({
+			geolocation = new AMap.Geolocation({
+				bordercolor: 'black',
+				borderRadius: '5px',
+				buttonSize: '30px',
         		enableHighAccuracy: true,
         		timeout: 10000,
         		maximumAge: 0,
@@ -254,11 +262,74 @@
         		panToLocation: true,
 			});
 			map.addControl(geolocation);
-			geolocation.getCurrentPosition();
-			geolocation.on 
+			geolocation.getCurrentPosition(function(status,result){
+            	if(status=='complete'){
+					onComplete(result);
+				}else{
+					onError(result);
+				}
+			});
+
+			function onComplete(data) {
+				lc = true;
+				console.log(lc);
+				lclnglat = data.position;
+				if (lc && mk) {
+					drawline();
+				};
+			}
+			
+			function onError(data) {
+				lc = false;
+			}
     	}).catch((e)=>{
         	console.error(e);
     	});
+		
+		function drawline() {
+			AMapLoader.load({
+    		}).then((AMap)=>{
+				if(polyline) {
+					polyline.destroy();
+					text.setMap(null);
+				}
+				var textPos = lclnglat.divideBy(2).add(location_gcj02.divideBy(2));
+				var distance = Math.round(lclnglat.distance(location_gcj02));
+				text = new AMap.Text({
+					position: textPos,
+					offset:[0, 0],
+					text: distance + 'M',
+					anchor: 'middle-left',
+					style:{
+						'background-color': 'transparent',
+						'color': '#828282',
+						'border-style': 'none',
+						'font-size': '1em',
+					}
+				});
+ 				text.setMap(map);
+				var path = [lclnglat, location_gcj02];
+				polyline = new AMap.Polyline({
+					path: path,
+					strokeColor: '#828282', 
+					strokeOpacity: 1,
+					strokeWeight: 3,
+					strokeStyle: 'dashed',
+					strokeDasharray: [10, 10],
+					lineJoin: 'round',
+					lineCap: 'round',
+				});
+				polyline.setMap(map)
+				map.setFitView(
+					[polyline],
+					false,
+					[100, 200, 20, 20],
+					16,
+				);
+    		}).catch((e)=>{
+        		console.error(e);
+    		});
+		}
 		
 		function check_input(lng, lat, n, e) {
 			if (Math.abs(lng) > 18000 || Math.abs(lat) > 9000 || n == undefined || e == undefined || lng == 0 || lat == 0) {
@@ -283,7 +354,7 @@
 				lng_d = (-lng / 100 - lng_i) / 60 * 100;
 			}
 			lng_d = (lng / 100 - lng_i) / 60 * 100;	
-			lng = lng_i + lng_d;
+			var lng = lng_i + lng_d;
 			if (e) {
 				lat_i = Math.floor(lat / 100);
 				lat_d = (lat / 100 - lat_i) /60 * 100;
@@ -292,7 +363,7 @@
 				lat_i = -Math.ceil(lat / 100);
 				lat_d = (-lat / 100 - lat_i) /60 * 100;
 			}	
-			lat = lat_i + lat_d;
+			var lat = lat_i + lat_d;
 			var location_wgs84 = [lng, lat];
 			return location_wgs84;
 		}
@@ -310,7 +381,7 @@
 			});
 				AMap.convertFrom(location_wgs84, 'gps', function (status, result) {
   					if (result.info === 'ok') {
-    					var location_gcj02 = result.locations[0];
+    					location_gcj02 = result.locations[0];
   					}
 					marker = new AMap.Marker({
             			position: location_gcj02,
@@ -318,12 +389,18 @@
 						offset: [-24,-46],
         			});
 					map.add(marker);
-					map.setFitView(
-    					[marker],
-    					false,
-    					[60, 60, 60, 60],
-    					16,
-					);
+					mk = true;
+					if (lc && mk) {
+						drawline();
+					}
+					else {
+						map.setFitView(
+    						[marker],
+    						false,
+    						[100, 200, 20, 20],
+    						16,
+						);
+					}
 				});
     		}).catch((e)=>{
         		console.error(e);
