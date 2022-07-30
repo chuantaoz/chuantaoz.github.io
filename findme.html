@@ -207,6 +207,8 @@
 		var n_input = new Boolean;
 		var e_input = new Boolean;
 		var marker;
+		var lc = new Boolean;
+		var mk = new Boolean;
 		
 		AMapLoader.load({
     		"key": "861ebb61c19992a2a65a4938021d0fe5",
@@ -253,6 +255,7 @@
 			});
 			map.addControl(geolocation);
 			geolocation.getCurrentPosition();
+			geolocation.on 
     	}).catch((e)=>{
         	console.error(e);
     	});
@@ -273,19 +276,22 @@
 			var lat_d;
 			if (n) {
 				lng_i = Math.floor(lng / 100);
+				lng_d = (lng / 100 - lng_i) / 60 * 100;
 			}
 			else {
-				lng_i = Math.ceil(lng / 100);
+				lng_i = -Math.floor(lng / 100);
+				lng_d = (-lng / 100 - lng_i) / 60 * 100;
 			}
 			lng_d = (lng / 100 - lng_i) / 60 * 100;	
 			lng = lng_i + lng_d;
 			if (e) {
 				lat_i = Math.floor(lat / 100);
+				lat_d = (lat / 100 - lat_i) /60 * 100;
 			}
 			else {
-				lat_i = Math.ceil(lat / 100);
-			}
-			lat_d = (lat / 100 - lat_i) /60 * 100;	
+				lat_i = -Math.ceil(lat / 100);
+				lat_d = (-lat / 100 - lat_i) /60 * 100;
+			}	
 			lat = lat_i + lat_d;
 			var location_wgs84 = [lng, lat];
 			return location_wgs84;
