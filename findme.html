@@ -272,7 +272,6 @@
 
 			function onComplete(data) {
 				lc = true;
-				console.log(lc);
 				lclnglat = data.position;
 				if (lc && mk) {
 					drawline();
@@ -297,7 +296,7 @@
 				var distance = Math.round(lclnglat.distance(location_gcj02));
 				text = new AMap.Text({
 					position: textPos,
-					offset:[0, 0],
+					offset:[10, 0],
 					text: distance + 'M',
 					anchor: 'middle-left',
 					style:{
@@ -345,25 +344,18 @@
 			var lng_d;
 			var lat_i;
 			var lat_d;
-			if (n) {
-				lng_i = Math.floor(lng / 100);
-				lng_d = (lng / 100 - lng_i) / 60 * 100;
-			}
-			else {
-				lng_i = -Math.floor(lng / 100);
-				lng_d = (-lng / 100 - lng_i) / 60 * 100;
-			}
-			lng_d = (lng / 100 - lng_i) / 60 * 100;	
+			lng_i = Math.floor(lng / 100);
+			lng_d = (lng / 100 - lng_i) / 60 * 100;
 			var lng = lng_i + lng_d;
-			if (e) {
-				lat_i = Math.floor(lat / 100);
-				lat_d = (lat / 100 - lat_i) /60 * 100;
+			if (!e) {
+				lng = -lng;
 			}
-			else {
-				lat_i = -Math.ceil(lat / 100);
-				lat_d = (-lat / 100 - lat_i) /60 * 100;
-			}	
+			lat_i = Math.floor(lat / 100);
+			lat_d = (lat / 100 - lat_i) /60 * 100;
 			var lat = lat_i + lat_d;
+			if (!n) {
+				lat = -lat;
+			}
 			var location_wgs84 = [lng, lat];
 			return location_wgs84;
 		}
