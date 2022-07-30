@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"> 
+	<title>Find Me</title>
+	<style>
+		* {
+    		box-sizing: border-box;
+		}
+        html{
+            height: 100%;
+			font-family: Helvetica, Arial, "sans-serif";
+        }
+		
+		body{
+            height: 100%;
+			margin: 0;
+        }
+		
+		#container{
+			
+            height: 100%;
+			z-index: 0;
+        }
+		
+		.input_div{
+			position: fixed;
+			z-index: 10;
+			width: 100%;
+			bottom: 0;
+			text-align: center;
+		}
+		
+		.input_div2{
+			width: 22em;
+			background-color:#E9E9E9;
+			padding: 1em 0;
+			border-radius: 1em;
+			margin: 0 auto 1em auto;
+			box-shadow: 0.5em 0.5em 1em 0 grey;
+		}
+		
+		.input_div_line{
+			display: inline;
+		}
+		
+		.input_div_left{
+			display: inline-block;
+			width: 6em;
+		}
+		
+		.input_div_middle{
+			display: inline-block;
+			width: 8em;
+		}
+		
+		.input_div_right{
+			display: inline-block;
+			width: 6em;
+		}
+		
+		.input_title{
+			height: 1.5em;
+		}
+		
+		.input_box{
+			width: inherit;
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 1.5em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey inset;
+		}
+		
+		.input_button{
+			width: 2.5em;
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 1.5em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey;
+		}
+		
+		.submit_button{
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 1.5em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey;
+		}
+		
+		.submit_button:active{
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 1.5em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey inset;
+		}
+		#notice{
+			font-size: 0.75em;
+			color: crimson;
+		}
+    </style>
+</head>
+
+<body>
+	<div id="container"></div>
+	<div class="input_div">
+		<div class="input_div2">
+			<div class="input_div_line">
+				<div class="input_div_left">
+					<span class="input_title">Latitude:</span>
+				</div>
+				<div class="input_div_middle">
+					<input type="number" class="input_box" id="latitude" name="latitude">
+				</div>
+				<div class="input_div_right">
+					<button type="button" class="input_button" id="button_n" onclick="btn_n()">N</button>
+					<button type="button" class="input_button" id="button_s" onclick="btn_s()">S</button>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="input_div_line">
+				<div class="input_div_left">
+					<span class="input_title">Longitude:</span>
+				</div>
+				<div class="input_div_middle">
+					<input type="number" class="input_box" id="longitude" name="longitude">
+				</div>
+				<div class="input_div_right">
+					<button type="button" class="input_button" id="button_e" onclick="btn_e()">E</button>
+					<button type="button" class="input_button" id="button_w" onclick="btn_w()">W</button>
+				</div>
+			</div>
+			<br>
+			<div class="input_div_line">
+				<span id="notice"></span>
+			</div>
+			<br>
+			<div class="input_div_line">
+				<button type="button" class="submit_button" id="button_submit" onclick="btn_submit()">Submit</button>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode:'809fa5036d60791fac11c6eeaea6153a',
+        }
+	</script>
+	<script src="https://webapi.amap.com/loader.js"></script>
+	<script type="text/javascript" >
+		var map;
+		AMapLoader.load({
+    		"key": "861ebb61c19992a2a65a4938021d0fe5",
+    		"version": "2.0",
+    		"plugins": ['AMap.Geolocation','AMap.ToolBar'],
+		}).then((AMap)=>{
+        	map = new AMap.Map('container');
+			map.addControl(new AMap.ToolBar());
+			var geolocation = new AMap.Geolocation({
+        		enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        		timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+        		maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+        		convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+        		showButton: true,        //显示定位按钮，默认：true
+        		buttonPosition: 'RB',    //定位按钮停靠位置，默认：'LB'，左下角
+        		buttonOffset: new AMap.Pixel(100, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        		showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+        		showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+        		panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+        		zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+			});
+			map.addControl(geolocation);
+			geolocation.getCurrentPosition();
+    	}).catch((e)=>{
+        	console.error(e);
+    	});   
+	</script>
+	<script>
+		var lng_input = new Number;
+		var lat_input = new Number;
+		var n_input = new Boolean;
+		var e_input = new Boolean;
+		
+		var marker;
+		
+		function check_input(lng, lat, n, e) {
+			if (Math.abs(lng) > 18000 || Math.abs(lat) > 9000 || n == undefined || e == undefined || lng == 0 || lat == 0) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		
+		function to_wgs84(lng, lat, n, e) {
+			var lng_i;
+			var lng_d;
+			var lat_i;
+			var lat_d;
+			if (n) {
+				lng_i = Math.floor(lng / 100);
+			}
+			else {
+				lng_i = Math.ceil(lng / 100);
+			}
+			lng_d = (lng / 100 - lng_i) / 60 * 100;	
+			lng = lng_i + lng_d;
+			if (e) {
+				lat_i = Math.floor(lat / 100);
+			}
+			else {
+				lat_i = Math.ceil(lat / 100);
+			}
+			lat_d = (lat / 100 - lat_i) /60 * 100;	
+			lat = lat_i + lat_d;
+			var location_wgs84 = [lng, lat];
+			return location_wgs84;
+		}
+		
+		function mark_location(location_wgs84) {
+			AMapLoader.load({
+    		}).then((AMap)=>{
+				if (marker != undefined) {
+					map.remove(marker);
+				}
+				AMap.convertFrom(location_wgs84, 'gps', function (status, result) {
+  					if (result.info === 'ok') {
+    					var location_gcj02 = result.locations[0];
+  					}
+					marker = new AMap.Marker({
+            			position: location_gcj02
+        			});
+					map.add(marker);
+					map.setFitView(
+    					[marker],
+    					true,
+    					[60, 60, 60, 60],
+    					16,
+					);
+				});
+    		}).catch((e)=>{
+        		console.error(e);
+    		});
+		}
+		
+		function btn_n() {
+			n_input = true;
+			document.getElementById("button_n").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+			document.getElementById("button_s").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+		}
+		
+		function btn_s() {
+			n_input = false;
+			document.getElementById("button_n").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+			document.getElementById("button_s").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+		}
+		
+		function btn_e() {
+			e_input = true;
+			document.getElementById("button_e").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+			document.getElementById("button_w").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+		}
+		
+		function btn_w() {
+			e_input = false;
+			document.getElementById("button_e").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+			document.getElementById("button_w").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+		}
+		
+		function btn_submit() {
+			lng_input = document.getElementById("longitude").value;
+			lat_input = document.getElementById("latitude").value;
+			var test = check_input(lng_input, lat_input, n_input, e_input);
+			var text;
+			if (test) {
+				text = "";
+				document.getElementById("notice").innerHTML = text;
+				
+				var location_input = to_wgs84(lng_input, lat_input, n_input, e_input);
+				mark_location(location_input);
+			}
+			else {
+				text = "Invalid input detected. Please check your inputs.";
+				document.getElementById("notice").innerHTML = text;
+			}
+		}
+	</script>
+</body>
+</html>
