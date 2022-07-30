@@ -2,8 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="author" content="Zhang Chuantao">
+	<meta name="description" content="FindMe Web Application">
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"> 
 	<title>Find Me</title>
+	<link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
 	<style>
 		* {
     		box-sizing: border-box;
@@ -19,7 +23,6 @@
         }
 		
 		#container{
-			
             height: 100%;
 			z-index: 0;
         }
@@ -36,11 +39,11 @@
 		.input_div2{
 			pointer-events: all;
 			width: 22em;
-			background-color:#E9E9E9;
+			background-color:#F2F2F2;
 			padding: 1em 0;
 			border-radius: 1em;
 			margin: 0 auto 1em auto;
-			box-shadow: 0.5em 0.5em 1em 0 grey;
+			box-shadow: 0.25em 0.25em 0.5em 0 grey;
 		}
 		
 		.input_div_line{
@@ -103,6 +106,25 @@
 			font-size: 0.75em;
 			color: crimson;
 		}
+		#img_submit{
+			height: 1.5em;
+		}
+		#logo_div{
+			position: fixed;
+			left: 1em;
+			top: 1em;
+			width: 14em;
+		}
+		#logo_img{
+			width: inherit;
+		}
+		#f_div{
+			position: fixed;
+			display: inline;
+			right: 0.4em;
+			bottom: 0.4em;
+			font-size: 0.7em;
+		}
     </style>
 </head>
 
@@ -142,8 +164,14 @@
 			</div>
 			<br>
 			<div class="input_div_line">
-				<button type="button" class="submit_button" id="button_submit" onclick="btn_submit()">Submit</button>
+				<button type="button" class="submit_button" id="button_submit" onclick="btn_submit()"><img id="img_submit" src="icons/add_location.png" alt="Find"></button>
 			</div>
+		</div>
+		<div id="logo_div">
+			<img id="logo_img" src="icons/logo.png">
+		</div>
+		<div id="f_div">
+			<span>Copyright © 2020 Chuantao Zhang</span>
 		</div>
 	</div>
 	
@@ -155,44 +183,60 @@
 	<script src="https://webapi.amap.com/loader.js"></script>
 	<script type="text/javascript" >
 		var map;
+		var lng_input = new Number;
+		var lat_input = new Number;
+		var n_input = new Boolean;
+		var e_input = new Boolean;
+		var marker;
+		
 		AMapLoader.load({
     		"key": "861ebb61c19992a2a65a4938021d0fe5",
     		"version": "2.0",
     		"plugins": ['AMap.Geolocation','AMap.ToolBar'],
 		}).then((AMap)=>{
-        	map = new AMap.Map('container');
-			
+        	map = new AMap.Map('container',{
+				zoom: 16,
+				center: [120.740255,31.268543],
+				mapStyle: 'amap://styles/whitesmoke',
+				showLabel: false,
+			});
 			var toolbar = new AMap.ToolBar({
 				position: 'RB',
-				offset: [21,80]
-			})
+				offset: [21,80],
+			});
 			map.addControl(toolbar);
+			var myIcon = new AMap.Icon({
+				size: new AMap.Size(48, 48),
+				image: 'icons/my_location.png',
+				imageSize: new AMap.Size(48, 48),
+			});
 			var geolocation = new AMap.Geolocation({
-        		enableHighAccuracy: true,//是否使用高精度定位，默认:true
-        		timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-        		maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-        		convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-        		showButton: true,        //显示定位按钮，默认：true
-        		position: 'RB',    //定位按钮停靠位置，默认：'LB'，左下角
-        		offset: [20, 20],//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-        		showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-        		showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-        		panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-        		zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+        		enableHighAccuracy: true,
+        		timeout: 10000,
+        		maximumAge: 0,
+        		convert: true,
+        		showButton: true,
+        		position: 'RB',
+        		offset: [20, 30],
+        		showMarker: true,
+				markerOptions: {
+					icon: myIcon,
+					offset: [-24,-24],
+				},
+        		showCircle: true,
+				circleOptions: {
+					strokeColor: '#828282',
+					strokeOpacity: 0.2,
+					fillColor: '#828282',
+					fillOpacity: 0.2,
+				},
+        		panToLocation: true,
 			});
 			map.addControl(geolocation);
 			geolocation.getCurrentPosition();
     	}).catch((e)=>{
         	console.error(e);
-    	});   
-	</script>
-	<script>
-		var lng_input = new Number;
-		var lat_input = new Number;
-		var n_input = new Boolean;
-		var e_input = new Boolean;
-		
-		var marker;
+    	});
 		
 		function check_input(lng, lat, n, e) {
 			if (Math.abs(lng) > 18000 || Math.abs(lat) > 9000 || n == undefined || e == undefined || lng == 0 || lat == 0) {
@@ -234,17 +278,24 @@
 				if (marker != undefined) {
 					map.remove(marker);
 				}
+				var markerIcon = new AMap.Icon({
+				size: new AMap.Size(48, 48),
+				image: 'icons/location_on.png',
+				imageSize: new AMap.Size(48, 48),
+			});
 				AMap.convertFrom(location_wgs84, 'gps', function (status, result) {
   					if (result.info === 'ok') {
     					var location_gcj02 = result.locations[0];
   					}
 					marker = new AMap.Marker({
-            			position: location_gcj02
+            			position: location_gcj02,
+						icon: markerIcon,
+						offset: [-24,-46],
         			});
 					map.add(marker);
 					map.setFitView(
     					[marker],
-    					true,
+    					false,
     					[60, 60, 60, 60],
     					16,
 					);
