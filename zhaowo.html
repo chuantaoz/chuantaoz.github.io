@@ -1,0 +1,445 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Zhang Chuantao">
+	<meta name="description" content="FindMe Web Application">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"> 
+	<title>找我</title>
+	<link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
+	<style>
+		* {
+    		box-sizing: border-box;
+			-webkit-appearance: none;
+		}
+		
+        html{
+            height: 100%;
+			font-family: Helvetica, Arial, "sans-serif";
+			font-size: 1em;
+        }
+		
+		body{
+            height: 100%;
+			margin: 0;
+        }
+		
+		#container{
+            height: 100%;
+			z-index: 0;
+        }
+		
+		.input_div{
+			position: fixed;
+			pointer-events: none;
+			z-index: 10;
+			width: 100%;
+			bottom: 0;
+			text-align: center;
+		}
+		
+		.input_div2{
+			pointer-events: all;
+			width: 22em;
+			background-color:#F2F2F2;
+			padding: 1em 0;
+			border-radius: 1em;
+			margin: 0 auto 1.5em auto;
+			box-shadow: 0.25em 0.25em 0.5em 0 grey;
+		}
+		
+		.input_div_line{
+			display: inline;
+		}
+		
+		.input_div_left{
+			display: inline-block;
+			width: 6em;
+		}
+		
+		.input_div_middle{
+			display: inline-block;
+			width: 8em;
+		}
+		
+		.input_div_right{
+			display: inline-block;
+			width: 6em;
+		}
+		
+		.input_title{
+			height: 1.5em;
+		}
+		
+		.input_box{
+			font-size: 1em;
+			width: inherit;
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 1.5em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey inset;
+			padding: 1px 0.5em;
+		}
+		
+		.input_button{
+			font-size: 1em;
+			width: 2.5em;
+			border: none;
+			color: black;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 1.5em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey;
+			padding: 1px;
+		}
+		
+		.submit_button{
+			font-size: 1em;
+			width: 3em;
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 2em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey;
+			padding: 1px;
+		}
+		
+		.submit_button:active{
+			font-size: 1em;
+			width: 3em;
+			border: none;
+			background-color: white;
+			border-radius: 0.5em;
+			height: 2em;
+			box-shadow: 0.1em 0.1em 0.2em 0 grey inset;
+			padding: 1px;
+		}
+		
+		#notice{
+			font-size: 0.75em;
+			color: crimson;
+		}
+		
+		#img_submit{
+			height: 2em;
+		}
+		
+		#logo_div{
+			position: fixed;
+			left: 1em;
+			top: 1em;
+			width: 7em;
+		}
+		
+		#logo_img{
+			width: inherit;
+		}
+		
+		#f_div{
+			position: fixed;
+			display: inline;
+			right: 0.4em;
+			bottom: 0.4em;
+			font-size: 0.7em;
+		}
+    </style>
+</head>
+
+<body>
+	<div id="container"></div>
+	<div class="input_div">
+		<div class="input_div2">
+			<div class="input_div_line">
+				<div class="input_div_left">
+					<span class="input_title">纬度:</span>
+				</div>
+				<div class="input_div_middle">
+					<input type="number" class="input_box" id="latitude" name="latitude">
+				</div>
+				<div class="input_div_right">
+					<button type="button" class="input_button" id="button_n" onclick="btn_n()">北</button>
+					<button type="button" class="input_button" id="button_s" onclick="btn_s()">南</button>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="input_div_line">
+				<div class="input_div_left">
+					<span class="input_title">经度:</span>
+				</div>
+				<div class="input_div_middle">
+					<input type="number" class="input_box" id="longitude" name="longitude">
+				</div>
+				<div class="input_div_right">
+					<button type="button" class="input_button" id="button_e" onclick="btn_e()">东</button>
+					<button type="button" class="input_button" id="button_w" onclick="btn_w()">西</button>
+				</div>
+			</div>
+			<br>
+			<div class="input_div_line">
+				<span id="notice"></span>
+			</div>
+			<br>
+			<div class="input_div_line">
+				<button type="button" class="submit_button" id="button_submit" onclick="btn_submit()"><img id="img_submit" src="icons/add_location.png" alt="Find"></button>
+			</div>
+		</div>
+		<div id="logo_div">
+			<img id="logo_img" src="icons/zhaowo.png" alt="logo">
+		</div>
+		<div id="f_div">
+			<span>© 2022 张传韬</span>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode:'809fa5036d60791fac11c6eeaea6153a',
+        }
+	</script>
+	<script src="https://webapi.amap.com/loader.js"></script>
+	<script type="text/javascript" >
+		var map;
+		var lng_input = new Number;
+		var lat_input = new Number;
+		var n_input;
+		var e_input;
+		var marker;
+		var geolocation;
+		var location_gcj02;
+		var lclnglat;
+		var lc = false;
+		var mk = false;
+		var polyline;
+		var text;
+
+		AMapLoader.load({
+    		"key": "861ebb61c19992a2a65a4938021d0fe5",
+    		"version": "2.0",
+    		"plugins": ['AMap.Geolocation','AMap.ToolBar'],
+		}).then((AMap)=>{
+        	map = new AMap.Map('container',{
+				zoom: 16,
+				center: [120.740255,31.268543],
+				mapStyle: 'amap://styles/whitesmoke',
+				showLabel: false,
+			});
+			var toolbar = new AMap.ToolBar({
+				position: 'RB',
+				offset: [20,265],
+			});
+			map.addControl(toolbar);
+			var myIcon = new AMap.Icon({
+				size: new AMap.Size(48, 48),
+				image: 'icons/my_location.png',
+				imageSize: new AMap.Size(48, 48),
+			});
+			geolocation = new AMap.Geolocation({
+				bordercolor: 'black',
+				borderRadius: '5px',
+				buttonSize: '30px',
+        		enableHighAccuracy: true,
+        		timeout: 10000,
+        		maximumAge: 0,
+        		convert: true,
+        		showButton: true,
+        		position: 'RB',
+        		offset: [20, 205],
+        		showMarker: true,
+				markerOptions: {
+					icon: myIcon,
+					offset: [-24,-24],
+				},
+        		showCircle: true,
+				circleOptions: {
+					strokeColor: '#828282',
+					strokeOpacity: 0.2,
+					fillColor: '#828282',
+					fillOpacity: 0.2,
+				},
+        		panToLocation: true,
+			});
+			map.addControl(geolocation);
+			geolocation.getCurrentPosition(function(status,result){
+            	if(status=='complete'){
+					onComplete(result);
+				}else{
+					onError(result);
+				}
+			});
+
+			function onComplete(data) {
+				lc = true;
+				lclnglat = data.position;
+				if (lc && mk) {
+					drawline();
+				};
+			}
+			
+			function onError(data) {
+				lc = false;
+			}
+    	}).catch((e)=>{
+        	console.error(e);
+    	});
+		
+		function drawline() {
+			AMapLoader.load({
+    		}).then((AMap)=>{
+				if(polyline) {
+					polyline.destroy();
+					text.setMap(null);
+				}
+				var textPos = lclnglat.divideBy(2).add(location_gcj02.divideBy(2));
+				var distance = Math.round(lclnglat.distance(location_gcj02));
+				text = new AMap.Text({
+					position: textPos,
+					offset:[10, 0],
+					text: distance + '米',
+					anchor: 'middle-left',
+					style:{
+						'background-color': 'transparent',
+						'color': '#828282',
+						'border-style': 'none',
+						'font-size': '1em',
+					}
+				});
+ 				text.setMap(map);
+				var path = [lclnglat, location_gcj02];
+				polyline = new AMap.Polyline({
+					path: path,
+					strokeColor: '#828282', 
+					strokeOpacity: 1,
+					strokeWeight: 3,
+					strokeStyle: 'dashed',
+					strokeDasharray: [10, 10],
+					lineJoin: 'round',
+					lineCap: 'round',
+				});
+				polyline.setMap(map)
+				map.setFitView(
+					[polyline],
+					false,
+					[150, 250, 50, 50],
+					16,
+				);
+    		}).catch((e)=>{
+        		console.error(e);
+    		});
+		}
+		
+		function check_input(lng, lat, n, e) {
+			if (Math.abs(lng) > 18000 || Math.abs(lat) > 9000 || n == undefined || e == undefined || lng == 0 || lat == 0) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		
+		function to_wgs84(lng, lat, n, e) {
+			var lng_i;
+			var lng_d;
+			var lat_i;
+			var lat_d;
+			lng_i = Math.floor(lng / 100);
+			lng_d = (lng / 100 - lng_i) / 60 * 100;
+			var lng = lng_i + lng_d;
+			if (!e) {
+				lng = -lng;
+			}
+			lat_i = Math.floor(lat / 100);
+			lat_d = (lat / 100 - lat_i) /60 * 100;
+			var lat = lat_i + lat_d;
+			if (!n) {
+				lat = -lat;
+			}
+			var location_wgs84 = [lng, lat];
+			return location_wgs84;
+		}
+		
+		function mark_location(location_wgs84) {
+			AMapLoader.load({
+    		}).then((AMap)=>{
+				if (marker != undefined) {
+					map.remove(marker);
+				}
+				var markerIcon = new AMap.Icon({
+				size: new AMap.Size(48, 48),
+				image: 'icons/location_on.png',
+				imageSize: new AMap.Size(48, 48),
+			});
+				AMap.convertFrom(location_wgs84, 'gps', function (status, result) {
+  					if (result.info === 'ok') {
+    					location_gcj02 = result.locations[0];
+  					}
+					marker = new AMap.Marker({
+            			position: location_gcj02,
+						icon: markerIcon,
+						offset: [-24,-46],
+        			});
+					map.add(marker);
+					mk = true;
+					if (lc && mk) {
+						drawline();
+					}
+					else {
+						map.setFitView(
+    						[marker],
+    						false,
+    						[150, 250, 50, 50],
+    						16,
+						);
+					}
+				});
+    		}).catch((e)=>{
+        		console.error(e);
+    		});
+		}
+		
+		function btn_n() {
+			n_input = true;
+			document.getElementById("button_n").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+			document.getElementById("button_s").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+		}
+		
+		function btn_s() {
+			n_input = false;
+			document.getElementById("button_n").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+			document.getElementById("button_s").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+		}
+		
+		function btn_e() {
+			e_input = true;
+			document.getElementById("button_e").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+			document.getElementById("button_w").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+		}
+		
+		function btn_w() {
+			e_input = false;
+			document.getElementById("button_e").style.boxShadow = "0.1em 0.1em 0.2em 0 grey";
+			document.getElementById("button_w").style.boxShadow = "0.1em 0.1em 0.2em 0 grey inset";
+		}
+		
+		function btn_submit() {
+			lng_input = document.getElementById("longitude").value;
+			lat_input = document.getElementById("latitude").value;
+			var test = check_input(lng_input, lat_input, n_input, e_input);
+			var text;
+			if (test) {
+				text = "";
+				document.getElementById("notice").innerHTML = text;
+				
+				var location_input = to_wgs84(lng_input, lat_input, n_input, e_input);
+				mark_location(location_input);
+			}
+			else {
+				text = "无效数据，请检查输入的内容。";
+				document.getElementById("notice").innerHTML = text;
+			}
+		}
+	</script>
+</body>
+</html>
