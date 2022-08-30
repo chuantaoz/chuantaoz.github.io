@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		<link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
+		
+		<title>^_^</title>
+		
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				background-color: #F5B0BD;
+				height: 100%;
+				width: 100%;
+			}
+			
+			#cvs {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<canvas id="cvs" width="2000" height="2000"></canvas>
+	</body>
+	
+	<script>
+		var end = 1671845400000;
+		var mspd = 86400000;
+		var date = new Date();
+		var time = date.getTime();
+		var cd = end - time;
+		var day = Math.floor(cd / mspd) + 1;
+		
+		var fps = 100;
+		var itv = 1000 / fps;
+		
+		var f = 1;
+		
+		var stg1 = 2000;
+		var stg2 = 500;
+		var stgb = 1000;
+		
+		var circle = 12;
+		var circleD = new Array();
+		var circleX = new Array();
+		var circleR = new Array();
+		var circleV = new Array();
+		for (var i = 0; i < circle; i++) {
+			circleD[i] = Math.PI * 2 * Math.random();
+			circleX[i] = Math.random();
+			circleR[i] = Math.random();
+			circleV[i] = (0.2 + 0.2 *Math.random()) / fps;
+		}
+		
+		
+		var canvas = document.getElementById("cvs");
+		var ctx = canvas.getContext("2d");
+		
+		function draw() {
+			var w = window.innerWidth;
+			var h = window.innerHeight;
+
+			var fontSize =  w / 5;
+			var fontSizeM = w / 4;
+			var fontSize0 = 1;
+			canvas.width = w;
+			canvas.height = h;
+			ctx.fillStyle = "#FFFFFF";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			ctx.clearRect(0, 0, w, h);
+			
+			if (f <= stg1 / 1000 * fps) {
+				var a1 = 2 * (fontSizeM - fontSize0) / (stg1 / 1000) / (stg1 / 1000);
+				var x1 = fontSize0 + a1 * (f * itv / 1000) * (f * itv / 1000) / 2;
+				var a2 = 2 * day / (stg1 / 1000) / (stg1 / 1000);
+				var x2 = Math.round(day - a2 * (stg1 / 1000 - f * itv / 1000) * (stg1 / 1000 - f * itv / 1000) / 2);
+				ctx.font = x1 + "px monospace";
+				ctx.fillText(x2, w / 2, h / 2);
+			}
+			else if (f > stg1 / 1000 * fps && f <= stg1 / 1000 * fps + stg2 / 1000 * fps ) {
+				var a1 = 2 * (fontSizeM - fontSize) / (stg2 / 1000) / (stg2 / 1000);
+				var x1 = fontSize + a1 * ((stg2 - f * itv + stg1) / 1000) * ((stg2 - f * itv + stg1) / 1000) / 2;
+				ctx.font = x1 + "px monospace";
+				ctx.fillText(day, w / 2, h / 2);
+			}
+			else {
+				ctx.font = fontSize + "px monospace";
+				ctx.fillText(day, w / 2, h / 2);
+			}
+				
+			if (f > stg1 / 1000 * fps && f <= stg1 / 1000 * fps + stgb / 1000 * fps) {
+				for (var i = 0; i < circle; i++) {
+					ctx.save();
+					ctx.translate(w / 2, h / 2);
+					ctx.rotate(circleD[i] + circleV[i] * (f - stg1 / fps));
+					var xM = w / 4 + w / 4 * circleX[i];
+					var a1 = 2 * xM / (stgb / 1000) / (stgb / 1000);
+					var x1 = xM - a1 * ((stgb - f * itv + stg1) / 1000) * ((stgb - f * itv + stg1) / 1000) / 2;
+					var rM = w / 16 + w / 16 * circleR[i];
+					var a2 = 2 * (rM - 1) / (stgb / 1000) / (stgb / 1000);
+					var x2 = a2 * ((f * itv - stg1) / 1000) * ((f * itv - stg1) / 1000) / 2;
+					ctx.beginPath();
+					ctx.arc(x1, 0, x2, 0, Math.PI * 2, false);
+					ctx.fill();
+					ctx.restore();
+				}
+			}
+			else if (f <= stg1 / 1000 * fps) {
+			}
+			else {
+				for (var i = 0; i < circle; i++) {
+					ctx.save();
+					ctx.translate(w / 2, h / 2);
+					ctx.rotate(circleD[i] + circleV[i] * (f - stg1 / fps));
+					var xM = w / 4 + w / 4 * circleX[i];
+					var rM = w / 16 + w / 16 * circleR[i];
+					ctx.beginPath();
+					ctx.arc(xM, 0, rM, 0, Math.PI * 2, false);
+					ctx.fill();
+					ctx.restore();
+				}
+			}
+			f++;
+		}
+		
+		setInterval(draw, itv);
+	</script>
+</html>
